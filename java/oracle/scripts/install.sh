@@ -13,17 +13,17 @@ install_glibc() {
 install_java() {
 
 	[ -z ${JAVA_PACKAGE} ] && {
-		echo 'Environment variable JAVA_PACKAGE does not defined'
+		echo '[ERROR] Environment variable JAVA_PACKAGE does not defined'
 		exit 1
 	}
 
 	[ -z ${JAVA_VERSION} ] && {
-		echo 'Environment variable JAVA_VERSION does not defined'
+		echo '[ERROR] Environment variable JAVA_VERSION does not defined'
 		exit 1
 	}
 
 	[ -z ${JAVA_VERSION_BUILD} ] && {
-		echo 'Environment variable JAVA_VERSION_BUILD does not defined'
+		echo '[ERROR] Environment variable JAVA_VERSION_BUILD does not defined'
 		exit 1
 	}
 
