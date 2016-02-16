@@ -1,16 +1,28 @@
-oracle-server-jre-7u76:
+build-oracle-server-jre-7u76:
 	docker build -t 'ownport/oracle-server-jre:7u76' \
 		--build-arg JAVA_PACKAGE='server-jre' \
 		--build-arg JAVA_VERSION='7u76' \
 		--build-arg JAVA_VERSION_BUILD='13' \
 		java/oracle/
 
-oracle-server-jre-8u60:
+build-oracle-server-jre-8u60:
 	docker build -t 'ownport/oracle-server-jre:8u60' \
 		--build-arg JAVA_PACKAGE='server-jre' \
 		--build-arg JAVA_VERSION='8u60' \
 		--build-arg JAVA_VERSION_BUILD='27' \
 		java/oracle/
+
+build-hadoop-2.7.2:
+	docker build -t 'ownport/hadoop:2.7.2-jdk18' \
+		--build-arg HADOOP_VERSION='2.7.2' \
+		hadoop/
+
+run-hadoop-2.7.2:
+	docker run -ti --rm --name 'hadoop-272' -h hadoop-272 ownport/hadoop:2.7.2-jdk18
+
+run-hadoop-2.7.2-cli:
+	docker run -ti --rm --name 'hadoop-272' -h hadoop-272 ownport/hadoop:2.7.2-jdk18 /bin/bash
+
 
 # --------------------------------------------------------------
 #
