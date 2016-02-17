@@ -1,3 +1,8 @@
+# --------------------------------------------------------------
+#
+#	Java
+#
+
 build-oracle-server-jre-7u76:
 	docker build -t 'ownport/oracle-server-jre:7u76' \
 		--build-arg JAVA_PACKAGE='server-jre' \
@@ -11,6 +16,11 @@ build-oracle-server-jre-8u60:
 		--build-arg JAVA_VERSION='8u60' \
 		--build-arg JAVA_VERSION_BUILD='27' \
 		java/oracle/
+
+# --------------------------------------------------------------
+#
+#	Hadoop
+#
 
 build-hadoop-2.7.2:
 	docker build -t 'ownport/hadoop:2.7.2-jdk18' \
