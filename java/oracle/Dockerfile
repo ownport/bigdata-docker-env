@@ -6,13 +6,11 @@ ARG JAVA_VERSION_BUILD
 
 RUN apk add --update bash wget && rm -rf /var/cache/apk/*
 
-COPY scripts/install.sh /usr/local/bin/jdk-install.sh
+COPY scripts/install.sh /install/jdk/install.sh
 
-RUN /usr/local/bin/jdk-install.sh \
-        install_glibc
+RUN /install/jdk/install.sh glibc
 
-RUN /usr/local/bin/jdk-install.sh \
-        install_java 
+RUN /install/jdk/install.sh java 
 
 ENV JAVA_HOME /opt/jdk
 ENV PATH $JAVA_HOME/bin:$PATH

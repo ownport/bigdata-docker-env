@@ -1,6 +1,6 @@
 #!/bin/bash
 
-install_glibc() {
+glibc() {
 	apk add --update bash wget && \
     wget -c --progress=dot:mega --no-check-certificate \
         https://circle-artifacts.com/gh/andyshinn/alpine-pkg-glibc/6/artifacts/0/home/ubuntu/alpine-pkg-glibc/packages/x86_64/glibc-2.21-r2.apk \
@@ -10,7 +10,7 @@ install_glibc() {
     rm -rf /var/cache/apk/*
 }
 
-install_java() {
+java() {
 
 	[ -z ${JAVA_PACKAGE} ] && {
 		echo '[ERROR] Environment variable JAVA_PACKAGE does not defined'
