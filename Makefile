@@ -33,6 +33,9 @@ run-hadoop-2.7.2:
 run-hadoop-2.7.2-cli:
 	docker run -ti --rm --name 'hadoop-272' -h hadoop-272 ownport/hadoop:2.7.2-jdk18 /bin/bash
 
+attach-hadoop-2.7.2:
+	docker exec -ti hadoop-272 /bin/bash
+
 
 # --------------------------------------------------------------
 #

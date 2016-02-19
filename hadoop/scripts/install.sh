@@ -10,6 +10,14 @@ sshd() {
 	/usr/bin/ssh-keygen -A
 }
 
+sshd_passwordless() {
+
+	ssh-keygen -t dsa -P '' -f ~/.ssh/id_dsa && \
+	cat ~/.ssh/id_dsa.pub >> ~/.ssh/authorized_keys && \
+	chmod 0600 ~/.ssh/authorized_keys
+
+}
+
 
 hadoop() {
 
@@ -20,14 +28,16 @@ hadoop() {
 
 	echo "hosts: files dns" >> /etc/nsswitch.conf
 
-	mkdir -p /tmp/hadoop /opt
+	mkdir -p /tmp/hadoop /opt /data/hdfs
 
 	wget -c --progress=dot:mega --no-check-certificate \
 		http://www.eu.apache.org/dist/hadoop/common/hadoop-${HADOOP_VERSION}/hadoop-${HADOOP_VERSION}.tar.gz \
 		-P /tmp/hadoop/ && \
     tar --directory=/opt -xzf /tmp/hadoop/hadoop-${HADOOP_VERSION}.tar.gz && \
     ln -s /opt/hadoop-${HADOOP_VERSION} /opt/hadoop && \ 
-    rm -rf /tmp/hadoop 	
+    rm -rf \
+    	/tmp/hadoop \
+    	/opt/hadoop/share/doc 	
 }
 
 $@
