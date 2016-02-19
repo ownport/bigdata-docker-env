@@ -33,7 +33,11 @@ java() {
         -O /tmp/${JAVA_PACKAGE}-${JAVA_VERSION}-linux-x64.tar.gz && \
     mkdir -p /opt && \
     tar --directory=/opt -xzf /tmp/${JAVA_PACKAGE}-${JAVA_VERSION}-linux-x64.tar.gz && \
-	ln -s `ls /opt/ | grep jdk` /opt/jdk && \
+	ln -s `ls /opt/ | grep jdk` /opt/jdk
+}
+
+clean_files() {
+
     rm -rf \
         /opt/jdk/lib/visualvm/ \
         /opt/jdk/jre/lib/fonts/ \
@@ -43,5 +47,13 @@ java() {
         /opt/jdk/lib/*javafx*.jar \
         /opt/jdk/jre/lib/jfx*
 }
+
+set_env() {
+
+    JAVA_HOME=/opt/jdk
+    echo -e "export JAVA_HOME=${JAVA_HOME}\nexport PATH=$JAVA_HOME/bin:$PATH" >> /etc/profile.d/jdk.sh  
+    chmod +x /etc/profile.d/jdk.sh
+}
+
 
 $@

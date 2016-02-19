@@ -12,10 +12,10 @@ sshd() {
 
 sshd_passwordless() {
 
-	ssh-keygen -t dsa -P '' -f ~/.ssh/id_dsa && \
-	cat ~/.ssh/id_dsa.pub >> ~/.ssh/authorized_keys && \
-	chmod 0600 ~/.ssh/authorized_keys
-
+	ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa && \
+	cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys && \
+	chmod 0600 ~/.ssh/authorized_keys && \
+	echo 'StrictHostKeyChecking no' >> /etc/ssh/ssh_config
 }
 
 
@@ -38,6 +38,31 @@ hadoop() {
     rm -rf \
     	/tmp/hadoop \
     	/opt/hadoop/share/doc 	
+}
+
+set_env() {
+
+	# ENV HADOOP_HOME /opt/hadoop
+	# ENV PATH $HADOOP_HOME/bin:$PATH	
+
+	## ENV HADOOP_COMMON_LIB_NATIVE_DIR ${HADOOP_HOME}/lib/native
+	## ENV HADOOP_PREFIX /opt/hadoop
+	## ENV HADOOP_COMMON_HOME /opt/hadoop
+	## ENV HADOOP_HDFS_HOME /opt/hadoop
+	## ENV HADOOP_MAPRED_HOME /opt/hadoop
+	## ENV HADOOP_YARN_HOME /opt/hadoop
+	## ENV HADOOP_CONF_DIR /opt/hadoop
+	## ENV HADOOP_OPTS='-Djava.library.path=${HADOOP_HOME}/lib'
+	## ENV YARN_CONF_DIR $HADOOP_PREFIX/etc/hadoop
+
+	HADOOP_HOME=/opt/hadoop
+    echo -e "export HADOOP_HOME=/opt/hadoop\nexport PATH=$HADOOP_HOME/bin:$PATH" >> /etc/profile.d/hadoop.sh  
+    chmod +x /etc/profile.d/hadoop.sh	
+}
+
+format_namenode() {
+	
+	JAVA_HOME=/opt/jdk ./opt/hadoop/bin/hdfs namenode -format
 }
 
 $@
