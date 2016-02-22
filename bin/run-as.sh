@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 USER=${1}
 USERID=${2}
 CMD=${3}
