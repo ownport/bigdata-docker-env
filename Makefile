@@ -37,6 +37,11 @@ build-flume-1.5.0:
 		--build-arg FLUME_VERSION='1.5.0' \
 		flume
 
+run-flume-1.5.0-cli:
+	docker run -ti --rm --name 'flume-150' \
+		ownport/flume:1.5.0-jdk18 \
+		/bin/sh
+
 
 # --------------------------------------------------------------
 #
