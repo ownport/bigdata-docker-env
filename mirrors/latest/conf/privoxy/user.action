@@ -1,0 +1,6 @@
+{ +redirect{s@http://dl-4.alpinelinux.org/alpine/@http://mirrors/alpine-repo/@} }
+dl-4.alpinelinux.org/alpine/.*
+
+{ +redirect{s@http://www.apache.org/dist/@http://mirrors/apache-repo/@} }
+www.apache.org/dist/.*
+

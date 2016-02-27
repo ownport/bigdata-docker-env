@@ -1,0 +1,16 @@
+
+#  The directory where the other configuration files are located.
+confdir /etc/privoxy
+
+# The actions file(s) to use
+# actionsfile match-all.action # Actions that are applied to all sites and maybe overruled later on.
+# actionsfile default.action   # Main actions file
+actionsfile user.action      # User customizations
+
+# The filter file(s) to use
+# filterfile default.filter
+# filterfile user.filter      # User customizations
+
+# The address and TCP port on which Privoxy will listen for client requests.
+listen-address  0.0.0.0:8118
+

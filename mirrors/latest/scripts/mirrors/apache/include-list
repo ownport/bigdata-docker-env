@@ -1,0 +1,5 @@
++ hadoop/
++ hadoop/common/
++ hadoop/common/hadoop-2.7.2/
++ hadoop/common/hadoop-2.7.2/*
+- *
