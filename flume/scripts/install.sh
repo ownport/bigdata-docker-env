@@ -7,7 +7,7 @@ FLUME_URL="http://www.apache.org/dist/flume/${FLUME_VERSION}/apache-flume-${FLUM
 
 base() {
 
-	apk add --update wget
+    mkdir -p /data 
 }
 
 
@@ -29,7 +29,6 @@ flume() {
 
 clean() {
 
-    apk del wget 
     rm -rf /var/cache/apk/* /tmp/* /install/* && \
     echo '[INFO] Clearing is completed'    
 }
