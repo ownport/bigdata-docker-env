@@ -7,7 +7,18 @@ FLUME_URL="http://www.apache.org/dist/flume/${FLUME_VERSION}/apache-flume-${FLUM
 
 base() {
 
-    mkdir -p /data 
+    mkdir -p \
+        /data/bin \
+        /data/conf \
+        /data/channels \
+        /data/logs \
+        /data/lib \
+        /data/meta \
+        /data/sinks \
+        /data/tmp && \
+    apk add --update python
+
+    echo "hosts: files dns" >> /etc/nsswitch.conf
 }
 
 
