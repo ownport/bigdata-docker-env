@@ -12,7 +12,7 @@ glibc() {
     rm -rf /var/cache/apk/*
 }
 
-java() {
+jdk() {
 
     [ -z ${JAVA_PACKAGE} ] && {
         echo '[ERROR] Environment variable JAVA_PACKAGE does not defined'
@@ -38,7 +38,7 @@ java() {
     ln -s `ls /opt/ | grep jdk` /opt/jdk
 }
 
-clean_files() {
+clean() {
 
     rm -rf \
         /opt/jdk/lib/visualvm/ \
@@ -58,5 +58,10 @@ set_env() {
     chmod +x /etc/profile.d/jdk.sh
 }
 
+
+all() {
+    
+    glibc && jdk && clean && set_env
+}
 
 $@
