@@ -2,7 +2,7 @@
 #
 #	Environment
 #
-
+LOCAL_REPO := $(shell docker inspect -f "{{ json .NetworkSettings.Networks.bridge.IPAddress }}" bigdata-repo | sed "s/\"//g")
 PROXY_HOST := $(shell docker inspect -f "{{ json .NetworkSettings.Networks.bignet.IPAddress }}" mirrors | sed "s/\"//g")
 HTTP_PROXY := $(if ${PROXY_HOST},"http://${PROXY_HOST}:8118","")
 # not implemented, HTTPS_PROXY := $(if ${PROXY_HOST},"https://${PROXY_HOST}:8118","")
@@ -37,8 +37,10 @@ build-shipyard:
 #
 build-etcd-2.2.5:
 	docker build -t 'ownport/etcd:2.2.5' \
+		--no-cache \
+		--build-arg LOCAL_REPO=${LOCAL_REPO} \
 		--build-arg ETCD_VERSION='2.2.5' \
-		etcd
+		dockerfiles/etcd
 
 
 # --------------------------------------------------------------
@@ -48,10 +50,12 @@ build-etcd-2.2.5:
 
 build-consul-0.6.3:
 	docker build -t 'ownport/consul:0.6.3' \
+		--no-cache \
+		--build-arg LOCAL_REPO=${LOCAL_REPO} \
 		--build-arg CONSUL_VERSION='0.6.3' \
 		--build-arg CONSUL_SHA256='b0532c61fec4a4f6d130c893fd8954ec007a6ad93effbe283a39224ed237e250' \
 		--build-arg WEBUI_SHA256='93bbb300cacfe8de90fb3bd5ede7d37ae6ce014898edc520b9c96a676b2bbb72' \
-		consul/
+		dockerfiles/consul/
 
 run-consul-0.6.3-cli:
 	docker run -ti --rm --name 'consul-cli' \

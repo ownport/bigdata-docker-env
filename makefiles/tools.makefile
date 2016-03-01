@@ -1,5 +1,20 @@
 # --------------------------------------------------------------
 #
+#	simple HTTP server
+#
+build-darkhttpd:
+	docker build -t 'ownport/darkhttpd:latest' dockerfiles/darkhttpd/
+
+run-bigdata-repo:
+	docker run -d -v $(shell pwd)/:/data \
+		--name bigdata-repo \
+		-h bigdata-repo \
+		ownport/darkhttpd:latest \
+		darkhttpd /data
+
+
+# --------------------------------------------------------------
+#
 #	service commands
 #
 
