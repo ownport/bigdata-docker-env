@@ -1,0 +1,6 @@
+{ +redirect{s@http://dl-4.alpinelinux.org/alpine/@http://bigdata-local-repo/repo/alpine/@} }
+dl-4.alpinelinux.org/alpine/.*
+
+{ +redirect{s@http://www.apache.org/dist/@http://bigdata-local-repo/repo/apache/@} }
+www.apache.org/dist/.*
+

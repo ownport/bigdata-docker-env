@@ -1,11 +1,11 @@
-# Mirrorer
+# Local repositories
 
-## Mirrors
+## External repositories
 
-- Alpine linux (not yes)
-- Apache (partually, only hadoop-common)
-- Cloudera (not yet)
-- Hortonworks (not yet)
+- Alpine linux
+- Apache 
+- Cloudera 
+- Hortonworks 
 
 ## Components
 
@@ -17,7 +17,7 @@
 ## Settings
 
 ```sh
-$ HTTP_PROXY=http://mirrors:8118/
+$ HTTP_PROXY=http://local_repo:8118/
 ```
 
 ## How it'working
